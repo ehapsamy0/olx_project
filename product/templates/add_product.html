@@ -1,0 +1,77 @@
+{%extends 'base.html'%}
+{%load static%}
+{% load bootstrap4 %}
+
+
+{%block body%}
+	<div class="submit-ad main-grid-border">
+	<div class="container">
+		<h2 class="head">Post an Ad</h2>
+			<div class="post-ad-form">
+	<form method="post" action="{% url 'products:add_pro' %}" enctype="multipart/form-data">{% csrf_token %}
+		{% bootstrap_form form %}
+		<p class="post-terms">By clicking <strong>post Button</strong> you accept our <a href="terms.html" target="_blank">Terms of Use </a> and <a href="privacy.html" target="_blank">Privacy Policy</a></p>
+
+		{% buttons %}
+			<input type="submit" value="Post">
+		{% endbuttons %}
+	</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+<!--    &lt;!&ndash; Submit Ad &ndash;&gt;-->
+<!--	<div class="submit-ad main-grid-border">-->
+<!--		<div class="container">-->
+<!--			<h2 class="head">Post an Ad</h2>-->
+<!--			<div class="post-ad-form">-->
+<!--				<form method="post" action="{% url 'products:add_pro' %}">-->
+<!--					<label>Select Category <span>*</span></label>-->
+<!--					<select class="">-->
+<!--					  <option>Select Category</option>-->
+<!--                        {% for category in categorys %}-->
+<!--					    <option name="category">{{category.category_name}}</option>-->
+<!--                        {% endfor %}-->
+<!--					</select>-->
+<!--					<div class="clearfix"></div>-->
+<!--					<label>Ad Name <span>*</span></label>-->
+<!--					<input type="text" class="phone" placeholder="" name="name">-->
+<!--					<div class="clearfix"></div>-->
+<!--					<label>Ad Description <span>*</span></label>-->
+<!--					<textarea class="mess" placeholder="Write few lines about your product" name="description"></textarea>-->
+<!--					<div class="clearfix"></div>-->
+<!--				<div class="upload-ad-photos">-->
+<!--				<label>Photos for your ad :</label>-->
+<!--					<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />-->
+<!--					<div class="clearfix"></div>-->
+<!--					<div class="personal-details">-->
+<!--					<form>-->
+<!--						<label>Your Name <span>*</span></label>-->
+<!--						<input type="text" class="name" placeholder="">-->
+<!--						<div class="clearfix"></div>-->
+<!--						<label>Your Mobile No <span>*</span></label>-->
+<!--						<input type="text" class="phone" placeholder="">-->
+<!--						<div class="clearfix"></div>-->
+<!--						<label>Your Email Address<span>*</span></label>-->
+<!--						<input type="text" class="email" placeholder="">-->
+<!--						<div class="clearfix"></div>-->
+<!--						<p class="post-terms">By clicking <strong>post Button</strong> you accept our <a href="terms.html" target="_blank">Terms of Use </a> and <a href="privacy.html" target="_blank">Privacy Policy</a></p>-->
+<!--					<input type="submit" value="Post">-->
+<!--					<div class="clearfix"></div>-->
+<!--					</form>-->
+<!--					</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--	&lt;!&ndash; // Submit Ad &ndash;&gt;-->
+
+
+
+
+{%endblock%}

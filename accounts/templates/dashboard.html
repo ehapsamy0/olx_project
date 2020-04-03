@@ -1,0 +1,90 @@
+
+
+{%extends 'base.html'%}
+{%load static%}
+{% load bootstrap4 %}
+
+{% block style %}
+  #dashboard .container .dash-head{
+        margin-top: 65px;
+        margin-bottom: 65px;
+          }
+  #dashboard .container .dash-docs{
+    font-size: 20px;
+    text-align: center;
+    margin: 30px;
+}
+  #dashboard .container table{
+    height: 100%;
+    width: 100%;
+    margin: 9%;
+    padding: 0;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+  #dashboard .container table tr td a{
+    color: #fff;
+    font-size: 17px;
+    background-color: #01a185;
+    padding: 10px 7px;
+    margin-right: 2%;
+}
+  #dashboard .container table tr td .delete{
+    background-color: #f00;
+}
+{% endblock %}
+
+{%block body%}
+
+
+  <section id="dashboard" class="trend-ads">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="image" style="    width: 20%;
+    margin: auto;
+    margin-top: 5%;">
+                {% if user_profile.user_img %}
+            <img src="{{ user_profile.user_img.url }}" style=" width: 100%;border-radius: 50%;">
+                {% else %}
+                    <img src="{% static 'images/1.jpg' %}" style=" width: 100%;border-radius: 50%;">
+                {% endif %}
+            </div>
+                <h2 class="dash-head">Welcome {{ request.user.username }}</h2>
+          <p class="dash-docs">Here are the property listings that you have inquired about</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Products</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                {% if products %}
+                {% for product in products %}
+                <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{ product.name }}</td>
+                <td>
+                  <a class="btn btn-light" href="{% url 'products:product_detail' product.slug product.id %}">View Products Detail</a>
+                  <a class="btn btn-light" href="{% url 'products:add_product_image' product.slug product.id %}">Add More Image</a>
+                  <a class="btn btn-light" href="{% url 'products:update_product' product.slug product.id %}">update Product</a>
+                  <a class="btn btn-light delete" href="{% url 'products:delete_product' product.slug product.id %}">delete Product</a>
+                </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                  Products Empty
+                </tr>
+                {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

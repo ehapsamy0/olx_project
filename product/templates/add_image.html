@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%load static%}
+
+
+{%block body%}
+	<form method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit">Submit</button>
+	</form>
+
+    {% if image_products %}
+        {% for image_product in image_products %}
+            <img src="{{image_product.image.url}}">
+        {% endfor %}
+    {% else %}
+    No Image
+    {% endif %}
+{%endblock%}
